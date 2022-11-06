@@ -36,9 +36,9 @@ add_action( 'init', function () {
 
 add_action( 'admin_enqueue_scripts', function () {
 	$plugin_version = get_plugin_data( SHOPEO_CUSTOM_CARD_PLUGIN_FILE )['Version'];
-	wp_enqueue_style( 'shopeo-custom-card-style', plugins_url( '/assets/css/main.css', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array(), $plugin_version );
+	wp_enqueue_style( 'shopeo-custom-card-style', plugins_url( '/assets/css/backend.css', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array(), $plugin_version );
 	wp_style_add_data( 'shopeo-custom-card-style', 'rtl', 'replace' );
-	wp_enqueue_script( 'shopeo-custom-card-script', plugins_url( '/assets/js/main.js', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array( 'jquery' ), $plugin_version );
+	wp_enqueue_script( 'shopeo-custom-card-script', plugins_url( '/assets/js/backend.js', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array( 'jquery' ), $plugin_version );
 	wp_localize_script( 'shopeo-custom-card-script', 'shopeo_custom_card', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	) );
