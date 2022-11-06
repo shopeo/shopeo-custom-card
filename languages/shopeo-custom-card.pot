@@ -1,0 +1,29 @@
+# Copyright (C) 2022 SHOPEO
+# This file is distributed under the same license as the SHOPEO Custom Card plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: SHOPEO Custom Card 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/shopeo-custom-card\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-11-07T03:10:02+08:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: shopeo-custom-card\n"
+
+#. Plugin Name of the plugin
+#. Description of the plugin
+msgid "SHOPEO Custom Card"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://shopeo.cn/"
+msgstr ""
+
+#. Author of the plugin
+msgid "SHOPEO"
+msgstr ""
