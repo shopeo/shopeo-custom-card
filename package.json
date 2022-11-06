@@ -2,8 +2,7 @@
   "name": "shopeo-custom-card",
   "version": "1.0.0",
   "description": "SHOPEO Custom Card",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shopeo/shopeo-custom-card.git"
@@ -13,5 +12,8 @@
   "bugs": {
     "url": "https://github.com/shopeo/shopeo-custom-card/issues"
   },
-  "homepage": "https://shopeo.cn"
+  "homepage": "https://shopeo.cn",
+  "devDependencies": {
+    "laravel-mix": "^6.0.49"
+  }
 }
