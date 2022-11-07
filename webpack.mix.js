@@ -20,4 +20,4 @@ mix.sass('assets/src/scss/backend.scss', 'assets/css', [], [
     require('postcss-import'),
     require('rtlcss'),
     require('autoprefixer'),
-]);
+]).js('assets/src/js/backend.js', 'assets/js').js('assets/src/js/frontend.js', 'assets/js').vue();

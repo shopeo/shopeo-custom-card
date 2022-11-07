@@ -261,7 +261,7 @@
 }
 @keyframes fa-flip {
   50% {
-    transform: rotate3d(var«-58:1», var«58:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+    transform: rotate3d(var«-17:1», var«17:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
   }
 }
 @keyframes fa-shake {
