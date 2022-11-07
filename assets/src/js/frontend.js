@@ -1,0 +1,1 @@
+console.log(shopeo_custom_card_frontend);
