@@ -48,7 +48,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	$plugin_version = get_plugin_data( SHOPEO_CUSTOM_CARD_PLUGIN_FILE )['Version'];
 	wp_enqueue_style( 'shopeo-custom-card-frontend-style', plugins_url( '/assets/css/frontend.css', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array(), $plugin_version );
 	wp_style_add_data( 'shopeo-custom-card-frontend-style', 'rtl', 'replace' );
-	wp_enqueue_script( 'shopeo-custom-card-frontend-script', plugins_url( '/assets/js/frontend.js', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array(), $plugin_version );
+	wp_enqueue_script( 'shopeo-custom-card-frontend-script', plugins_url( '/assets/js/frontend.js', SHOPEO_CUSTOM_CARD_PLUGIN_FILE ), array(), $plugin_version, true );
 	wp_localize_script( 'shopeo-custom-card-frontend-script', 'shopeo_custom_card_frontend', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	) );
@@ -57,7 +57,7 @@ add_action( 'wp_enqueue_scripts', function () {
 add_action( 'woocommerce_single_product_summary', function () {
 	global $product;
 	if ( $product ) {
-		echo "<a class='button' href='#'>" . __( 'Custom Now', 'shopeo-custom-card' ) . "</a>";
+		echo "<div id='custom-app' style='display: none;'></div><button class='button' onclick='document.getElementById(" . "\"custom-app\"" . ").style.display=" . "\"block\"" . "'>" . __( 'Custom Now', 'shopeo-custom-card' ) . "</button>";
 	}
 }, 40 );
 

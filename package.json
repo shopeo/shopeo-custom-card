@@ -37,6 +37,7 @@
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.2",
     "vue": "^3.2.41",
-    "vue-loader": "^16.8.3"
+    "vue-loader": "^16.8.3",
+    "vuex": "^4.1.0"
   }
 }

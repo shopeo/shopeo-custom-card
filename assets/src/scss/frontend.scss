@@ -7,3 +7,13 @@ $fa-font-path: "../../fonts";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#custom-app {
+  @apply fixed;
+  @apply top-0;
+  @apply left-0;
+  @apply w-screen;
+  @apply h-screen;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.4);
+}
