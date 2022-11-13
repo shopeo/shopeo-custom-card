@@ -7819,6 +7819,18 @@ readers do not read off random characters that represent icons */
 .w-12 {
   width: 3rem;
 }
+.flex-none {
+  flex: none;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -7834,20 +7846,37 @@ readers do not read off random characters that represent icons */
 .justify-between {
   justify-content: space-between;
 }
-.gap-2 {
-  gap: 0.5rem;
-}
 .gap-4 {
   gap: 1rem;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .rounded {
   border-radius: 0.25rem;
 }
+.rounded-md {
+  border-radius: 0.375rem;
+}
 .border-4 {
   border-width: 4px;
 }
+.border-y-0 {
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+.border-l-0 {
+  border-left-width: 0px;
+}
+.border-r {
+  border-right-width: 1px;
+}
 .border-solid {
   border-style: solid;
+}
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 .border-white {
   --tw-border-opacity: 1;
@@ -7923,12 +7952,56 @@ readers do not read off random characters that represent icons */
   --tw-border-opacity: 1;
   border-color: rgb(22 163 74 / var(--tw-border-opacity));
 }
+.flex-box {
+  height: calc(100% - 49px);
+}
+.categories-ul {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+  height: 100%;
+  overflow: scroll;
+}
+.categories-ul li {
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.categories-ul li.active, .categories-ul li:hover {
+  cursor: pointer;
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.categories-ul li.active span, .categories-ul li:hover span {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+.categories-ul li span {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-left: 0.5rem;
+}
+.grid-box {
+  height: 100%;
+  overflow-y: scroll;
+}
 @media (min-width: 768px) {
   .md\:h-2\/3 {
     height: 66.666667%;
   }
   .md\:w-1\/2 {
     width: 50%;
+  }
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));

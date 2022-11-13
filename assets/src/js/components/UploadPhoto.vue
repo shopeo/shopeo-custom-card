@@ -26,6 +26,9 @@ export default {
   methods: {
     close(e) {
       document.getElementById('custom-app').style.display = "none";
+    },
+    clear(e) {
+
     }
   }
 }

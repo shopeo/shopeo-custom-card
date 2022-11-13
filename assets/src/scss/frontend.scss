@@ -31,3 +31,39 @@ $fa-font-path: "../../fonts";
     @apply border-green-600;
   }
 }
+
+.flex-box {
+  height: calc(100% - 49px);
+}
+
+.categories-ul {
+  @apply p-0;
+  @apply m-0;
+  @apply list-none;
+  @apply h-full;
+  @apply overflow-scroll;
+  li {
+    @apply block;
+    @apply py-2 px-4;
+    @apply bg-white;
+    &.active, &:hover {
+      @apply cursor-pointer;
+      @apply bg-green-600;
+      @apply text-white;
+      span {
+        @apply text-gray-100;
+      }
+    }
+
+    span {
+      @apply text-gray-400;
+      @apply text-sm;
+      @apply ml-2;
+    }
+  }
+}
+
+.grid-box {
+  @apply h-full;
+  @apply overflow-y-scroll;
+}

@@ -7819,6 +7819,18 @@ readers do not read off random characters that represent icons */
 .w-12 {
   width: 3rem;
 }
+.flex-none {
+  flex: none;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -7834,20 +7846,37 @@ readers do not read off random characters that represent icons */
 .justify-between {
   justify-content: space-between;
 }
-.gap-2 {
-  gap: 0.5rem;
-}
 .gap-4 {
   gap: 1rem;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .rounded {
   border-radius: 0.25rem;
 }
+.rounded-md {
+  border-radius: 0.375rem;
+}
 .border-4 {
   border-width: 4px;
 }
+.border-y-0 {
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+.border-l-0 {
+  border-right-width: 0px;
+}
+.border-r {
+  border-left-width: 1px;
+}
 .border-solid {
   border-style: solid;
+}
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 .border-white {
   --tw-border-opacity: 1;
@@ -7893,6 +7922,9 @@ readers do not read off random characters that represent icons */
   }
   .md\:w-1\/2 {
     width: 50%;
+  }
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
