@@ -9,11 +9,25 @@ $fa-font-path: "../../fonts";
 @tailwind utilities;
 
 #custom-app {
-  @apply fixed;
-  @apply top-0;
-  @apply left-0;
-  @apply w-screen;
-  @apply h-screen;
+  @apply fixed left-0 top-0 w-screen h-screen;
   z-index: 9999;
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+.model-title {
+  @apply flex justify-between;
+  @apply py-2 px-4;
+  @apply border-solid border-t-0 border-x-0 border-b border-gray-200;
+  .title-btn {
+    @apply cursor-pointer;
+  }
+
+  .title-name {
+    @apply text-center font-bold;
+    @apply w-full;
+  }
+
+  .active {
+    @apply border-green-600;
+  }
 }
