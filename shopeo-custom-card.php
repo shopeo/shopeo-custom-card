@@ -12,6 +12,8 @@ Version: 0.0.1
 
 require_once "vendor/autoload.php";
 
+use Shopeo\ShopeoCustomCard\Ajax;
+
 if ( ! defined( 'SHOPEO_CUSTOM_CARD_PLUGIN_FILE' ) ) {
 	define( 'SHOPEO_CUSTOM_CARD_PLUGIN_FILE', __FILE__ );
 }
@@ -57,7 +59,17 @@ add_action( 'wp_enqueue_scripts', function () {
 add_action( 'woocommerce_single_product_summary', function () {
 	global $product;
 	if ( $product ) {
-		echo "<div id='custom-app' style='display: none;'></div><button class='button' onclick='document.getElementById(" . "\"custom-app\"" . ").style.display=" . "\"block\"" . "'>" . __( 'Custom Now', 'shopeo-custom-card' ) . "</button>";
+		?>
+        <script>
+            let current_product = {
+                id:<?php echo $product->id;?>,
+                name: '<?php echo $product->name;?>'
+            };
+        </script>
+        <div id="custom-app" style="display: none"></div>
+        <button class="button"
+                onclick="document.getElementById('custom-app').style.display='block';"><?php _e( 'Custom Now', 'shopeo-custom-card' ); ?></button>
+		<?php
 	}
 }, 40 );
 

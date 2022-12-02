@@ -20088,8 +20088,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// console.log(shopeo_custom_card_frontend);
-
+console.log(shopeo_custom_card_frontend);
+console.log(current_product);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#custom-app');
 })();
 
