@@ -8,7 +8,12 @@ class Ajax {
 		$ajax = [
 			'get_woo_product_categories',
 			'get_woo_products_by_category',
-			'get_woo_product_by_id'
+			'get_woo_product_by_id',
+			'upload_avatar',
+			'get_avatars',
+			'clear_avatars',
+			'background_categories',
+			'frame_categories'
 		];
 
 		foreach ( $ajax as $hook ) {
@@ -49,6 +54,26 @@ class Ajax {
 		$product    = wc_get_product( $product_id );
 		wp_send_json( $product );
 	}
-}
 
-$ajax = new Ajax();
+	public function upload_avatar() {
+
+		wp_send_json( [] );
+	}
+
+	public function get_avatars() {
+
+		wp_send_json( [ 'success' => 'true' ] );
+	}
+
+	public function clear_avatars() {
+		wp_send_json( [] );
+	}
+
+	public function background_categories() {
+		wp_send_json( [] );
+	}
+
+	public function frame_categories() {
+		wp_send_json( [] );
+	}
+}

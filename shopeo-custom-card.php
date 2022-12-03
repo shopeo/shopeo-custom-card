@@ -13,6 +13,7 @@ Version: 0.0.1
 require_once "vendor/autoload.php";
 
 use Shopeo\ShopeoCustomCard\Ajax;
+use Shopeo\ShopeoCustomCard\Admin;
 
 if ( ! defined( 'SHOPEO_CUSTOM_CARD_PLUGIN_FILE' ) ) {
 	define( 'SHOPEO_CUSTOM_CARD_PLUGIN_FILE', __FILE__ );
@@ -77,3 +78,6 @@ add_action( 'wp', function () {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 } );
+
+$ajax  = new Ajax();
+$admin = new Admin();

@@ -17725,14 +17725,192 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _modules_avatar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/avatar */ "./assets/src/js/store/modules/avatar.js");
+/* harmony import */ var _modules_backgrounds__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/backgrounds */ "./assets/src/js/store/modules/backgrounds.js");
+/* harmony import */ var _modules_frames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/frames */ "./assets/src/js/store/modules/frames.js");
+/* harmony import */ var _modules_workflow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/workflow */ "./assets/src/js/store/modules/workflow.js");
+
+
+
+
 
 var debug = "development" !== 'production';
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
-  modules: {},
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
+  modules: {
+    workflow: _modules_workflow__WEBPACK_IMPORTED_MODULE_3__["default"],
+    frames: _modules_frames__WEBPACK_IMPORTED_MODULE_2__["default"],
+    backgrounds: _modules_backgrounds__WEBPACK_IMPORTED_MODULE_1__["default"],
+    avatar: _modules_avatar__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   strict: debug,
-  plugins: debug ? [(0,vuex__WEBPACK_IMPORTED_MODULE_0__.createLogger)()] : []
+  plugins: debug ? [(0,vuex__WEBPACK_IMPORTED_MODULE_4__.createLogger)()] : []
 }));
+
+/***/ }),
+
+/***/ "./assets/src/js/store/modules/avatar.js":
+/*!***********************************************!*\
+  !*** ./assets/src/js/store/modules/avatar.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var state = {
+  file: '',
+  current: '',
+  avatars: []
+};
+var getters = {
+  file: function file(state) {
+    return state.file;
+  },
+  current: function current(state) {
+    return state.current;
+  },
+  avatars: function avatars(state) {
+    return state.avatars;
+  }
+};
+var actions = {
+  uploadAvatar: function uploadAvatar(_ref, file) {
+    var commit = _ref.commit;
+    var formData = new FormData();
+    formData.set('file', file);
+    formData.set('action', 'upload_avatar');
+    jQuery.ajax({
+      url: shopeo_custom_card_frontend.ajax_url,
+      type: 'POST',
+      data: formData,
+      success: function success(data) {
+        console.log(data);
+      }
+    });
+  },
+  file: function file(_ref2, _file) {
+    var commit = _ref2.commit;
+    commit('file', _file);
+  },
+  current: function current(_ref3, _current) {
+    var commit = _ref3.commit;
+    commit('current', _current);
+  },
+  avatars: function avatars(_ref4) {
+    var commit = _ref4.commit;
+    jQuery.ajax({
+      url: shopeo_custom_card_frontend.ajax_url,
+      type: 'GET',
+      data: {
+        action: 'get_avatars'
+      },
+      success: function success(data) {
+        console.log(data);
+      }
+    });
+  },
+  clear: function clear(_ref5) {
+    var commit = _ref5.commit;
+    jQuery.ajax({
+      url: shopeo_custom_card_frontend.ajax_url,
+      type: 'POST',
+      data: {
+        action: 'clear_avatars'
+      },
+      success: function success(data) {
+        console.log(data);
+      }
+    });
+  }
+};
+var mutations = {
+  file: function file(state, _file2) {
+    state.file = _file2;
+  },
+  current: function current(state, _current2) {
+    state.current = _current2;
+  },
+  avatars: function avatars(state, _avatars) {
+    state.avatars = _avatars;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./assets/src/js/store/modules/backgrounds.js":
+/*!****************************************************!*\
+  !*** ./assets/src/js/store/modules/backgrounds.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var state = {};
+var getters = {};
+var actions = {};
+var mutations = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./assets/src/js/store/modules/frames.js":
+/*!***********************************************!*\
+  !*** ./assets/src/js/store/modules/frames.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var state = {};
+var getters = {};
+var actions = {};
+var mutations = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./assets/src/js/store/modules/workflow.js":
+/*!*************************************************!*\
+  !*** ./assets/src/js/store/modules/workflow.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var state = {};
+var getters = {};
+var actions = {};
+var mutations = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
 
 /***/ }),
 
@@ -17823,15 +18001,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['current', 'avatars'])),
+  created: function created() {
+    this.$store.dispatch('avatars');
   },
   methods: {
     close: function close(e) {
       document.getElementById('custom-app').style.display = "none";
     },
-    clear: function clear(e) {}
+    selectFile: function selectFile(e) {
+      this.$refs['file-input'].click();
+    },
+    upload: function upload(e) {
+      console.log(e);
+    },
+    clear: function clear(e) {
+      this.$store.dispatch('clear');
+    }
   }
 });
 
@@ -17856,8 +18051,8 @@ var _hoisted_2 = {
   "class": "w-full h-5/6 mx-4 md:w-1/2 md:h-2/3 bg-white rounded shadow-md"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_select_background = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("select-background");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_select_background)])]);
+  var _component_upload_photo = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("upload-photo");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_upload_photo)])]);
 }
 
 /***/ }),
@@ -17979,14 +18174,9 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title-name"
 }, "Choose Photos Source", -1 /* HOISTED */);
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "my-2 px-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "file",
-  "class": "hidden"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "w-full"
-}, "Choose from your album")], -1 /* HOISTED */);
+var _hoisted_5 = {
+  "class": "my-4 px-4"
+};
 var _hoisted_6 = {
   "class": "p-4 pt-0"
 };
@@ -18000,13 +18190,26 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.close();
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.close && $options.close.apply($options, arguments);
     }),
     "class": "fas fa-xmark"
-  })]), _hoisted_4]), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  })]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    ref: "file-input",
+    type: "file",
+    "class": "hidden",
+    onChange: _cache[1] || (_cache[1] = function () {
+      return $options.upload && $options.upload.apply($options, arguments);
+    })
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.selectFile && $options.selectFile.apply($options, arguments);
+    }),
+    "class": "w-full"
+  }, "Choose from your album")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": "px-2",
     href: "javascript:;",
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[3] || (_cache[3] = function () {
       return $options.clear && $options.clear.apply($options, arguments);
     })
   }, "Clear All")]), _hoisted_9])]);
@@ -20088,8 +20291,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-console.log(shopeo_custom_card_frontend);
-console.log(current_product);
+
+// console.log(current_product);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#custom-app');
 })();
 

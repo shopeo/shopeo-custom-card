@@ -7788,9 +7788,9 @@ readers do not read off random characters that represent icons */
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .mr-2 {
   margin-right: 0.5rem;
@@ -7904,6 +7904,10 @@ readers do not read off random characters that represent icons */
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 .pt-0 {
   padding-top: 0px;
