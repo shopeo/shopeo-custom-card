@@ -6,7 +6,6 @@ class Ajax {
 
 	public function __construct() {
 		$ajax = [
-			'get_woo_product_categories',
 			'get_woo_products_by_category',
 			'get_woo_product_by_id',
 			'upload_avatar',
@@ -22,9 +21,8 @@ class Ajax {
 		}
 	}
 
-	public function get_woo_product_categories() {
-		$term_id = $_POST['term_id'];
-		$args    = array(
+	public function get_woo_product_categories( $term_id = 0 ) {
+		$args = array(
 			'taxonomy'   => 'product_cat',
 			'orderby'    => 'name',
 			'order'      => 'asc',
@@ -70,10 +68,12 @@ class Ajax {
 	}
 
 	public function background_categories() {
-		wp_send_json( [] );
+		$options = get_option( 'shopeo_custom_card_options' );
+		$this->get_woo_product_categories( $options['background_category_id'] );
 	}
 
 	public function frame_categories() {
-		wp_send_json( [] );
+		$options = get_option( 'shopeo_custom_card_options' );
+		$this->get_woo_product_categories( $options['frame_category_id'] );
 	}
 }
