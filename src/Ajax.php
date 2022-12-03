@@ -60,7 +60,7 @@ class Ajax {
 
 	public function get_avatars() {
 
-		wp_send_json( [ 'success' => 'true' ] );
+		wp_send_json( [] );
 	}
 
 	public function clear_avatars() {
