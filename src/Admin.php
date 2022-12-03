@@ -22,7 +22,7 @@ class Admin {
 	}
 
 	public function init() {
-		register_setting( 'shopeo_custom_card', 'shopeo_custom_card_options' );
+		register_setting( 'options', 'shopeo_custom_card_options' );
 		add_settings_section( 'shopeo_customer_card_section', __( 'General', 'shopeo-custom-card' ), array(
 			$this,
 			'section_callback'
@@ -65,7 +65,7 @@ class Admin {
             <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
             <form action="options.php" method="post">
 				<?php
-				settings_fields( 'shopeo_custom_card' );
+				settings_fields( 'options' );
 				do_settings_sections( 'shopeo-custom-card' );
 				submit_button( __( 'Save Settings', 'shopeo-custom-card' ) );
 				?>
