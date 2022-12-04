@@ -1,21 +1,21 @@
 {
-    "name": "shopeo/shopeo-custom-card",
-    "description": "SHOPEO Custom Card",
-    "type": "project",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Shopeo\\ShopeoCustomCard\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "SHOPEO",
-            "email": "hello@shopeo.cn"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "tencentcloud/bda": "dev-master"
+  "name": "shopeo/shopeo-custom-card",
+  "description": "SHOPEO Custom Card",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Shopeo\\ShopeoCustomCard\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "SHOPEO",
+      "email": "hello@shopeo.cn"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "tencentcloud/bda": "dev-master"
+  }
 }

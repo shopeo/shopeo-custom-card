@@ -1,1 +1,5 @@
 # SHOPEO Custom Card
+
+APPID:1258055442
+SecretID:AKID4JgWmzOmQVOZ9szbK4ALpHRFrzLmNu2j
+SecretKEY:r4WZiO0eKKGBGbPJzspliKz5uNwDburm
