@@ -22,8 +22,8 @@ class Admin {
 	}
 
 	public function init() {
-		register_setting( 'options', 'shopeo_custom_card_options' );
-		add_settings_section( 'shopeo_customer_card_section', __( 'General', 'shopeo-custom-card' ), array(
+		register_setting( 'shopeo_custom_card_options', 'shopeo_custom_card_options' );
+		add_settings_section( 'shopeo_custom_card_section', __( 'General', 'shopeo-custom-card' ), array(
 			$this,
 			'section_callback'
 		), 'shopeo-custom-card' );
@@ -31,12 +31,21 @@ class Admin {
 		add_settings_field( 'shopeo_custom_card_frame_category_id', __( 'Frame Category ID', 'shopeo-custom-card' ), array(
 			$this,
 			'frame_category_id_callback'
-		), 'shopeo-custom-card', 'shopeo_customer_card_section' );
+		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 
 		add_settings_field( 'shopeo_custom_card_background_category_id', __( 'Background Category ID', 'shopeo-custom-card' ), array(
 			$this,
 			'background_category_id_callback'
-		), 'shopeo-custom-card', 'shopeo_customer_card_section' );
+		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
+
+		add_settings_field( 'shopeo_custom_card_tencent_cloud_secret_id', __( 'Tencent cloud SecretID', 'shopeo-custom-card' ), array(
+			$this,
+			'tencent_cloud_secret_id_callback'
+		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
+		add_settings_field( 'shopeo_custom_card_tencent_cloud_secret_key', __( 'Tencent cloud SecretKEY', 'shopeo-custom-card' ), array(
+			$this,
+			'tencent_cloud_secret_key_callback'
+		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 	}
 
 	public function section_callback() {
@@ -59,13 +68,29 @@ class Admin {
 		<?php
 	}
 
+	public function tencent_cloud_secret_id_callback() {
+		$options = get_option( 'shopeo_custom_card_options' );
+		?>
+        <input type="text" name="shopeo_custom_card_options[tencent_cloud_secret_id]"
+               value="<?php echo isset( $options['tencent_cloud_secret_id'] ) ? esc_attr( $options['tencent_cloud_secret_id'] ) : ''; ?>">
+		<?php
+	}
+
+	public function tencent_cloud_secret_key_callback() {
+		$options = get_option( 'shopeo_custom_card_options' );
+		?>
+        <input type="text" name="shopeo_custom_card_options[tencent_cloud_secret_key]"
+               value="<?php echo isset( $options['tencent_cloud_secret_key'] ) ? esc_attr( $options['tencent_cloud_secret_key'] ) : ''; ?>">
+		<?php
+	}
+
 	public function html() {
 		?>
         <div class="wrap">
             <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
             <form action="options.php" method="post">
 				<?php
-				settings_fields( 'options' );
+				settings_fields( 'shopeo_custom_card_options' );
 				do_settings_sections( 'shopeo-custom-card' );
 				submit_button( __( 'Save Settings', 'shopeo-custom-card' ) );
 				?>
