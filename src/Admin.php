@@ -38,6 +38,10 @@ class Admin {
 			'background_category_id_callback'
 		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 
+		add_settings_field( 'shopeo_custom_card_tencent_cloud_region', __( 'Tencent cloud region', 'shopeo-custom-card' ), array(
+			$this,
+			'tencent_cloud_region_callback'
+		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 		add_settings_field( 'shopeo_custom_card_tencent_cloud_secret_id', __( 'Tencent cloud SecretID', 'shopeo-custom-card' ), array(
 			$this,
 			'tencent_cloud_secret_id_callback'
@@ -50,6 +54,29 @@ class Admin {
 
 	public function section_callback() {
 		echo '<p>' . __( '', 'shopeo-custom-card' ) . '</p>';
+	}
+
+	public function tencent_cloud_region_callback() {
+		$options = get_option( 'shopeo_custom_card_options' );
+		?>
+        <select name="shopeo_custom_card_options[region]">
+            <option value="ap-beijing" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-beijing' ) ? 'selected' : '' ?>>
+                ap-beijing
+            </option>
+            <option value="ap-chengdu" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-chengdu' ) ? 'selected' : '' ?>>
+                ap-chengdu
+            </option>
+            <option value="ap-guangzhou" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-guangzhou' ) ? 'selected' : '' ?>>
+                ap-guangzhou
+            </option>
+            <option value="ap-nanjing" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-nanjing' ) ? 'selected' : '' ?>>
+                ap-nanjing
+            </option>
+            <option value="ap-shanghai" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-shanghai' ) ? 'selected' : '' ?>>
+                ap-shanghai
+            </option>
+        </select>
+		<?php
 	}
 
 	public function frame_category_id_callback() {
@@ -85,6 +112,13 @@ class Admin {
 	}
 
 	public function html() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		if ( isset( $_GET['settings-updated'] ) ) {
+			add_settings_error( 'shopeo-custom-card', 'shopeo-custom-card', __( 'Settings Saved', 'shopeo-custom-card' ), 'success' );
+		}
+		settings_errors( 'shopeo-custom-card' );
 		?>
         <div class="wrap">
             <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
