@@ -17785,6 +17785,9 @@ var actions = {
       url: shopeo_custom_card_frontend.ajax_url,
       type: 'POST',
       data: formData,
+      contentType: false,
+      cache: false,
+      processData: false,
       success: function success(data) {
         console.log(data);
       }
@@ -18022,7 +18025,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$refs['file-input'].click();
     },
     upload: function upload(e) {
-      console.log(e);
+      if (e.target.files && e.target.files[0]) {
+        var file = e.target.files[0];
+        this.$store.dispatch('uploadAvatar', file);
+      }
     },
     clear: function clear(e) {
       this.$store.dispatch('clear');
@@ -18197,6 +18203,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     ref: "file-input",
     type: "file",
+    accept: ".jpg,.jpeg,.png",
     "class": "hidden",
     onChange: _cache[1] || (_cache[1] = function () {
       return $options.upload && $options.upload.apply($options, arguments);

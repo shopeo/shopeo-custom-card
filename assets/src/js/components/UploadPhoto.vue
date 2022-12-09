@@ -5,7 +5,7 @@
       <div class="title-name">Choose Photos Source</div>
     </div>
     <div class="my-4 px-4">
-      <input ref="file-input" type="file" class="hidden" @change="upload">
+      <input ref="file-input" type="file" accept=".jpg,.jpeg,.png" class="hidden" @change="upload">
       <button @click="selectFile" class="w-full">Choose from your album</button>
     </div>
     <div class="p-4 pt-0">
@@ -39,7 +39,10 @@ export default {
       this.$refs['file-input'].click();
     },
     upload(e) {
-      console.log(e);
+      if (e.target.files && e.target.files[0]) {
+        let file = e.target.files[0];
+        this.$store.dispatch('uploadAvatar', file);
+      }
     },
     clear(e) {
       this.$store.dispatch('clear');

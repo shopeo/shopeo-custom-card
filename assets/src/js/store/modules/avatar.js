@@ -23,6 +23,9 @@ const actions = {
             url: shopeo_custom_card_frontend.ajax_url,
             type: 'POST',
             data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
             success: function (data) {
                 console.log(data);
             }

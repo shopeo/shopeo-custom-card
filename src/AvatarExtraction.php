@@ -28,7 +28,7 @@ class AvatarExtraction {
 		$req    = new SegmentPortraitPicRequest();
 		$params = array();
 		$req->fromJsonString( json_encode( $params ) );
-		$resp = $this->client->SegmentPortraitPic( $req );
-		error_log( print_r( $resp, true ) );
+
+		return $this->client->SegmentPortraitPic( $req );
 	}
 }
