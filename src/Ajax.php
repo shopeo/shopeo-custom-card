@@ -54,8 +54,12 @@ class Ajax {
 	}
 
 	public function upload_avatar() {
-
-		wp_send_json( [] );
+		if ( $_FILES['file'] ) {
+			$file   = FileUpload::upload( $_FILES['file'] );
+			$avatar = new AvatarExtraction();
+			$resq   = $avatar->process( $file['url'] );
+		}
+		wp_send_json( $resq );
 	}
 
 	public function get_avatars() {

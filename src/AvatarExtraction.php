@@ -2,11 +2,12 @@
 
 namespace Shopeo\ShopeoCustomCard;
 
+use TencentCloud\Bda\V20200324\Models\SegmentationOptions;
+use TencentCloud\Bda\V20200324\Models\SegmentCustomizedPortraitPicRequest;
 use TencentCloud\Common\Credential;
 use TencentCloud\Common\Profile\ClientProfile;
 use TencentCloud\Common\Profile\HttpProfile;
 use TencentCloud\Bda\V20200324\BdaClient;
-use TencentCloud\Bda\V20200324\Models\SegmentPortraitPicRequest;
 
 class AvatarExtraction {
 	private $cred;
@@ -24,11 +25,17 @@ class AvatarExtraction {
 		$this->client = new BdaClient( $this->cred, isset( $options['region'] ) ? esc_attr( $options['region'] ) : 'ap-beijing', $this->clientProfile );
 	}
 
-	public function segmentPortraitPic( $url ) {
-		$req    = new SegmentPortraitPicRequest();
-		$params = array();
+	public function process( $url ) {
+		$req                 = new SegmentCustomizedPortraitPicRequest();
+		$segmentationOptions = new SegmentationOptions();
+		$segmentationOptions->setHead( true );
+		$params = array(
+			"Url"                 => $url,
+			"SegmentationOptions" => $segmentationOptions
+		);
 		$req->fromJsonString( json_encode( $params ) );
 
-		return $this->client->SegmentPortraitPic( $req );
+		return $this->client->SegmentCustomizedPortraitPic( $req );
 	}
+
 }
