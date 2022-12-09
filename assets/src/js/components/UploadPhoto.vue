@@ -41,6 +41,7 @@ export default {
     upload(e) {
       if (e.target.files && e.target.files[0]) {
         let file = e.target.files[0];
+        this.$store.dispatch('file', file);
         this.$store.dispatch('uploadAvatar', file);
       }
     },

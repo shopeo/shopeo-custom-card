@@ -18027,6 +18027,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     upload: function upload(e) {
       if (e.target.files && e.target.files[0]) {
         var file = e.target.files[0];
+        this.$store.dispatch('file', file);
         this.$store.dispatch('uploadAvatar', file);
       }
     },
