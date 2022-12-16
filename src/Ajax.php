@@ -32,7 +32,7 @@ class Ajax {
 		if ( $term_id ) {
 			$args['term_taxonomy_id'] = $term_id;
 		}
-		$product_categories = get_terms( $args );
+		$product_categories = array_values( get_terms( $args ) );
 		wp_send_json( $product_categories );
 	}
 
@@ -57,7 +57,7 @@ class Ajax {
 		if ( $_FILES['file'] ) {
 			$file   = FileUpload::upload( $_FILES['file'] );
 			$avatar = new AvatarExtraction();
-			$resq   = $avatar->process( $file['url'] );
+			$resq   = $avatar->detectBody( $file['url'] );
 		}
 		wp_send_json( $resq );
 	}
