@@ -15,12 +15,12 @@ class AvatarExtraction {
 	private $config;
 
 	public function __construct() {
-		$options                = get_option( 'shopeo_custom_card_options' );
-		$this->config           = new Config( [
+		$options      = get_option( 'shopeo_custom_card_options' );
+		$this->config = new Config( [
 			'accessKeyId'     => $options['ali_cloud_access_key_id'],
-			'accessKeySecret' => $options['ali_cloud_access_key_secret']
+			'accessKeySecret' => $options['ali_cloud_access_key_secret'],
+			'endpoint'        => $options['ali_cloud_end_point']
 		] );
-		$this->config->endpoint = $options['ali_cloud_end_point'];
 	}
 
 	public function createClient() {
@@ -30,16 +30,17 @@ class AvatarExtraction {
 	public function segmentHead( $url ) {
 		$client             = $this->createClient();
 		$segmentHeadRequest = new SegmentHeadRequest( [
-			'ImageURL' => $url
+			'imageURL' => $url
 		] );
-		$runtime            = new RuntimeOptions( [] );
+		$runtime            = new RuntimeOptions();
 		try {
 			$response = $client->segmentHeadWithOptions( $segmentHeadRequest, $runtime );
-			error_log( print_r( $response->body, true ) );
+			error_log( $response->body );
 		} catch ( Exception $error ) {
 			if ( ! ( $error instanceof TeaError ) ) {
 				$error = new TeaError( [], $error->getMessage(), $error->getCode(), $error );
 			}
+			error_log( $error->message );
 			Utils::assertAsString( $error->message );
 		}
 	}
