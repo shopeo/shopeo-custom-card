@@ -16,6 +16,6 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "tencentcloud/bda": "dev-master"
+    "alibabacloud/imageseg-20191230": "dev-master"
   }
 }

@@ -38,17 +38,17 @@ class Admin {
 			'background_category_id_callback'
 		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 
-		add_settings_field( 'shopeo_custom_card_tencent_cloud_region', __( 'Tencent cloud region', 'shopeo-custom-card' ), array(
+		add_settings_field( 'shopeo_custom_card_ali_cloud_endpoint', __( 'Ali cloud Endpoint', 'shopeo-custom-card' ), array(
 			$this,
-			'tencent_cloud_region_callback'
+			'ali_cloud_endpoint_callback'
 		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
-		add_settings_field( 'shopeo_custom_card_tencent_cloud_secret_id', __( 'Tencent cloud SecretID', 'shopeo-custom-card' ), array(
+		add_settings_field( 'shopeo_custom_card_ali_cloud_access_key_id', __( 'Ali cloud AccessKey ID', 'shopeo-custom-card' ), array(
 			$this,
-			'tencent_cloud_secret_id_callback'
+			'ali_cloud_access_key_id_callback'
 		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
-		add_settings_field( 'shopeo_custom_card_tencent_cloud_secret_key', __( 'Tencent cloud SecretKEY', 'shopeo-custom-card' ), array(
+		add_settings_field( 'shopeo_custom_card_ali_cloud_access_key_secret', __( 'Ali cloud AccessKey Secret', 'shopeo-custom-card' ), array(
 			$this,
-			'tencent_cloud_secret_key_callback'
+			'ali_cloud_access_key_secret_callback'
 		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 	}
 
@@ -56,26 +56,11 @@ class Admin {
 		echo '<p>' . __( '', 'shopeo-custom-card' ) . '</p>';
 	}
 
-	public function tencent_cloud_region_callback() {
+	public function ali_cloud_endpoint_callback() {
 		$options = get_option( 'shopeo_custom_card_options' );
 		?>
-        <select name="shopeo_custom_card_options[region]">
-            <option value="ap-beijing" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-beijing' ) ? 'selected' : '' ?>>
-                ap-beijing
-            </option>
-            <option value="ap-chengdu" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-chengdu' ) ? 'selected' : '' ?>>
-                ap-chengdu
-            </option>
-            <option value="ap-guangzhou" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-guangzhou' ) ? 'selected' : '' ?>>
-                ap-guangzhou
-            </option>
-            <option value="ap-nanjing" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-nanjing' ) ? 'selected' : '' ?>>
-                ap-nanjing
-            </option>
-            <option value="ap-shanghai" <?php echo ( isset( $options['region'] ) && $options['region'] === 'ap-shanghai' ) ? 'selected' : '' ?>>
-                ap-shanghai
-            </option>
-        </select>
+        <input type="text" name="shopeo_custom_card_options[ali_cloud_end_point]"
+               value="<?php echo isset( $options['ali_cloud_end_point'] ) ? esc_attr( $options['ali_cloud_end_point'] ) : ''; ?>">
 		<?php
 	}
 
@@ -95,19 +80,19 @@ class Admin {
 		<?php
 	}
 
-	public function tencent_cloud_secret_id_callback() {
+	public function ali_cloud_access_key_id_callback() {
 		$options = get_option( 'shopeo_custom_card_options' );
 		?>
-        <input type="text" name="shopeo_custom_card_options[tencent_cloud_secret_id]"
-               value="<?php echo isset( $options['tencent_cloud_secret_id'] ) ? esc_attr( $options['tencent_cloud_secret_id'] ) : ''; ?>">
+        <input type="text" name="shopeo_custom_card_options[ali_cloud_access_key_id]"
+               value="<?php echo isset( $options['ali_cloud_access_key_id'] ) ? esc_attr( $options['ali_cloud_access_key_id'] ) : ''; ?>">
 		<?php
 	}
 
-	public function tencent_cloud_secret_key_callback() {
+	public function ali_cloud_access_key_secret_callback() {
 		$options = get_option( 'shopeo_custom_card_options' );
 		?>
-        <input type="text" name="shopeo_custom_card_options[tencent_cloud_secret_key]"
-               value="<?php echo isset( $options['tencent_cloud_secret_key'] ) ? esc_attr( $options['tencent_cloud_secret_key'] ) : ''; ?>">
+        <input type="text" name="shopeo_custom_card_options[ali_cloud_access_key_secret]"
+               value="<?php echo isset( $options['ali_cloud_access_key_secret'] ) ? esc_attr( $options['ali_cloud_access_key_secret'] ) : ''; ?>">
 		<?php
 	}
 
