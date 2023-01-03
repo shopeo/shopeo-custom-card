@@ -28,6 +28,7 @@ class ComposerStaticIniteafef164361230a216575438f402a107
         'O' => 
         array (
             'OneSm\\' => 6,
+            'OSS\\' => 4,
         ),
         'G' => 
         array (
@@ -73,6 +74,10 @@ class ComposerStaticIniteafef164361230a216575438f402a107
         'OneSm\\' => 
         array (
             0 => __DIR__ . '/..' . '/lizhichao/one-sm/src',
+        ),
+        'OSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

@@ -3,7 +3,7 @@
         'name' => 'shopeo/shopeo-custom-card',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '9d4eb40d2d491d479b97dbb4f81e7af38a68f76a',
+        'reference' => 'a6fed811b77f2b6212148086d8808ab716a9cbf8',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -138,6 +138,17 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'aliyuncs/oss-sdk-php' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '572d0f8e099e8630ae7139ed3fdedb926c7a760f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../aliyuncs/oss-sdk-php',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
         'guzzlehttp/guzzle' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
@@ -224,7 +235,7 @@
         'shopeo/shopeo-custom-card' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '9d4eb40d2d491d479b97dbb4f81e7af38a68f76a',
+            'reference' => 'a6fed811b77f2b6212148086d8808ab716a9cbf8',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

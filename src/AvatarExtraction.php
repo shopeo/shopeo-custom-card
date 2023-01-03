@@ -28,11 +28,12 @@ class AvatarExtraction {
 	}
 
 	public function segmentHead( $url ) {
-		$client             = $this->createClient();
+		$client = $this->createClient();
 		$segmentHeadRequest = new SegmentHeadRequest( [
 			'imageURL' => $url
 		] );
-		$runtime            = new RuntimeOptions();
+		error_log( print_r( $segmentHeadRequest, true ) );
+		$runtime = new RuntimeOptions();
 		try {
 			$response = $client->segmentHeadWithOptions( $segmentHeadRequest, $runtime );
 			error_log( $response->body );
