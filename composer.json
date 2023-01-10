@@ -16,7 +16,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "alibabacloud/imageseg-20191230": "dev-master",
-    "aliyuncs/oss-sdk-php": "dev-master"
+    "php": "8.0",
+    "alibabacloud/imageseg-20191230": "dev-master"
   }
 }

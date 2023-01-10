@@ -3,7 +3,7 @@
 namespace Shopeo\ShopeoCustomCard;
 
 use AlibabaCloud\SDK\Imageseg\V20191230\Imageseg;
-use AlibabaCloud\SDK\Imageseg\V20191230\Models\SegmentHeadRequest;
+use AlibabaCloud\SDK\Imageseg\V20191230\Models\SegmentHeadAdvanceRequest;
 use AlibabaCloud\Tea\Exception\TeaError;
 use AlibabaCloud\Tea\Utils\Utils;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
@@ -28,14 +28,14 @@ class AvatarExtraction {
 	}
 
 	public function segmentHead( $url ) {
-		$client = $this->createClient();
-		$segmentHeadRequest = new SegmentHeadRequest( [
+		$client             = $this->createClient();
+		$segmentHeadRequest = new SegmentHeadAdvanceRequest( [
 			'imageURL' => $url
 		] );
 		error_log( print_r( $segmentHeadRequest, true ) );
 		$runtime = new RuntimeOptions();
 		try {
-			$response = $client->segmentHeadWithOptions( $segmentHeadRequest, $runtime );
+			$response = $client->segmentHeadAdvance( $segmentHeadRequest, $runtime );
 			error_log( $response->body );
 		} catch ( Exception $error ) {
 			if ( ! ( $error instanceof TeaError ) ) {
