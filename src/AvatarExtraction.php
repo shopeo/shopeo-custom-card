@@ -30,7 +30,7 @@ class AvatarExtraction {
 
 	public function segmentHead( $tmpFile ) {
 		$client             = $this->createClient();
-		$file               = fopen( $tmpFile['file'], 'rb' );
+		$file               = fopen( $tmpFile['tmp_name'], 'rb' );
 		$stream             = new Stream( $file );
 		$segmentHeadRequest = new SegmentHeadAdvanceRequest( [
 			'imageURLObject' => $stream

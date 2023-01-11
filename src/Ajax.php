@@ -55,9 +55,8 @@ class Ajax {
 
 	public function upload_avatar() {
 		if ( $_FILES['file'] ) {
-			$file   = FileUpload::upload( $_FILES['file'] );
 			$avatar = new AvatarExtraction();
-			$resq   = $avatar->segmentHead( $file );
+			$resq   = $avatar->segmentHead( $_FILES['file'] );
 		}
 		wp_send_json( $resq );
 	}
