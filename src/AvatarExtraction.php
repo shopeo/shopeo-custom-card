@@ -9,6 +9,7 @@ use AlibabaCloud\Tea\Utils\Utils;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 use Darabonba\OpenApi\Models\Config;
 use Exception;
+use GuzzleHttp\Psr7\Stream;
 
 class AvatarExtraction {
 
@@ -27,22 +28,23 @@ class AvatarExtraction {
 		return new Imageseg( $this->config );
 	}
 
-	public function segmentHead( $url ) {
+	public function segmentHead( $tmpFile ) {
 		$client             = $this->createClient();
+		$file               = fopen( $tmpFile['file'], 'rb' );
+		$stream             = new Stream( $file );
 		$segmentHeadRequest = new SegmentHeadAdvanceRequest( [
-			'imageURL' => $url
+			'imageURLObject' => $stream
 		] );
-		error_log( print_r( $segmentHeadRequest, true ) );
-		$runtime = new RuntimeOptions();
+		$runtime            = new RuntimeOptions();
 		try {
 			$response = $client->segmentHeadAdvance( $segmentHeadRequest, $runtime );
-			error_log( $response->body );
-		} catch ( Exception $error ) {
-			if ( ! ( $error instanceof TeaError ) ) {
-				$error = new TeaError( [], $error->getMessage(), $error->getCode(), $error );
-			}
-			error_log( $error->message );
-			Utils::assertAsString( $error->message );
+			$json     = Utils::toJSONString( $response->body );
+			error_log( $json );
+
+			return $json;
+		} catch ( Exception $exception ) {
+			$error = Utils::toJSONString( $exception );
+			error_log( $error );
 		}
 	}
 }

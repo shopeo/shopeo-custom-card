@@ -3,7 +3,7 @@
         'name' => 'shopeo/shopeo-custom-card',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '0822ad133b8b47ae94051503a1f600ba43316814',
+        'reference' => '591b4dc07ad2546a59077e4b58f9ebe3db3758e5',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -224,7 +224,7 @@
         'shopeo/shopeo-custom-card' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '0822ad133b8b47ae94051503a1f600ba43316814',
+            'reference' => '591b4dc07ad2546a59077e4b58f9ebe3db3758e5',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
