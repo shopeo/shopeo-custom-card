@@ -4,7 +4,6 @@ namespace Shopeo\ShopeoCustomCard;
 
 use AlibabaCloud\SDK\Imageseg\V20191230\Imageseg;
 use AlibabaCloud\SDK\Imageseg\V20191230\Models\SegmentHeadAdvanceRequest;
-use AlibabaCloud\Tea\Exception\TeaError;
 use AlibabaCloud\Tea\Utils\Utils;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 use Darabonba\OpenApi\Models\Config;
@@ -38,10 +37,15 @@ class AvatarExtraction {
 		$runtime            = new RuntimeOptions();
 		try {
 			$response = $client->segmentHeadAdvance( $segmentHeadRequest, $runtime );
-			$json     = Utils::toJSONString( $response->body );
-			error_log( $json );
+			$body     = Utils::toJSONString( $response->body );
+			error_log( $body );
+			$images = [];
+			foreach ( $response->body->data->elements as $element ) {
+				$image    = FileUpload::download( $element->imageURL );
+				$images[] = $image;
+			}
 
-			return $json;
+			return $images;
 		} catch ( Exception $exception ) {
 			$error = Utils::toJSONString( $exception );
 			error_log( $error );
