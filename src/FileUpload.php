@@ -26,7 +26,6 @@ class FileUpload {
 			'tmp_name' => $file_name,
 			'size'     => filesize( $file_name )
 		);
-		error_log( print_r( $file, true ) );
 
 		return self::upload( $file );
 	}
