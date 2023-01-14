@@ -12,7 +12,12 @@
       <div class="flex justify-between"><h5>Images Records (Click To Use)</h5><a class="px-2" href="javascript:;"
                                                                                  @click="clear">Clear All</a></div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div v-if="!loading">
 
+        </div>
+        <div v-if="loading">
+          <img src="assets/images/loading.gif">
+        </div>
       </div>
     </div>
   </div>
@@ -23,7 +28,9 @@ import {mapGetters} from 'vuex';
 
 export default {
   data() {
-    return {};
+    return {
+      loading: true
+    };
   },
   computed: {
     ...mapGetters(['current', 'avatars'])

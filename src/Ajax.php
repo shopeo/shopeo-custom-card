@@ -61,15 +61,6 @@ class Ajax {
 		wp_send_json( $resq );
 	}
 
-	public function get_avatars() {
-
-		wp_send_json( [] );
-	}
-
-	public function clear_avatars() {
-		wp_send_json( [] );
-	}
-
 	public function background_categories() {
 		$options = get_option( 'shopeo_custom_card_options' );
 		$this->get_woo_product_categories( $options['background_category_id'] );

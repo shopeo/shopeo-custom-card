@@ -38,16 +38,7 @@ const actions = {
         commit('current', current);
     },
     avatars({commit}) {
-        jQuery.ajax({
-            url: shopeo_custom_card_frontend.ajax_url,
-            type: 'GET',
-            data: {
-                action: 'get_avatars'
-            },
-            success: function (data) {
-                console.log(data);
-            }
-        });
+        return [];
     },
     clear({commit}) {
         jQuery.ajax({
