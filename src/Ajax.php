@@ -86,7 +86,12 @@ class Ajax {
 			'count'      => true,
 			'pad_counts' => true,
 		);
-		$skins   = array_values( get_terms( $args ) );
+		$terms   = array_values( get_terms( $args ) );
+		$skins   = [];
+		foreach ( $terms as $term ) {
+			$term->color = get_term_meta( $term->term_id, 'product_attribute_color', true );
+			$skins[]     = $term;
+		}
 		wp_send_json( $skins );
 	}
 }
