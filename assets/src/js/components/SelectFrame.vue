@@ -19,22 +19,8 @@
     <div class="flex flex-box">
       <div class="flex-none border-y-0 border-l-0 border-r border-solid border-gray-200">
         <ul class="categories-ul">
-          <li class="active">Couple<span>40</span></li>
-          <li>Hot Sale<span>10</span></li>
-          <li>Couple<span>40</span></li>
-          <li>New Arrivals<span>10</span></li>
-          <li>Hot Sale<span>10</span></li>
-          <li>Couple<span>40</span></li>
-          <li>New Arrivals<span>10</span></li>
-          <li>Hot Sale<span>10</span></li>
-          <li>Couple<span>40</span></li>
-          <li>New Arrivals<span>10</span></li>
-          <li>Hot Sale<span>10</span></li>
-          <li>Couple<span>40</span></li>
-          <li>New Arrivals<span>10</span></li>
-          <li>Hot Sale<span>10</span></li>
-          <li>Couple<span>40</span></li>
-          <li>New Arrivals<span>10</span></li>
+          <li class="active">All<span>{{ product_count }}</span></li>
+          <li v-for="(category,index) in frame_categories">{{ category.name }}<span>{{ category.count }}</span></li>
         </ul>
       </div>
       <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 grid-box">
@@ -45,15 +31,30 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
   data() {
     return {
-      skin: 'white'
+      loading: false,
+      skin: 'white',
     };
+  },
+  computed: {
+    ...mapGetters(['frame_categories', 'product_count', 'skins', 'frames'])
+  },
+  created() {
+    this.loading = true;
+    let that = this;
+    this.$store.dispatch('frame_categories', 'frame_categories');
+    this.$store.dispatch('skins', 'skins');
+    this.$store.dispatch('frames', 'frames').finally(function () {
+      that.loading = false;
+    })
   },
   methods: {
     back(e) {
-
+      this.$store.dispatch('step', 'upload-photo');
     },
     changeSkin(skin) {
       this.skin = skin;

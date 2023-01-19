@@ -261,7 +261,7 @@
 }
 @keyframes fa-flip {
   50% {
-    transform: rotate3d(var«-68:1», var«68:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+    transform: rotate3d(var«-17:1», var«17:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
   }
 }
 @keyframes fa-shake {
@@ -7795,8 +7795,15 @@ readers do not read off random characters that represent icons */
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .mr-2 {
   margin-left: 0.5rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
 }
 .flex {
   display: flex;
@@ -7837,8 +7844,8 @@ readers do not read off random characters that represent icons */
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .items-center {
   align-items: center;
@@ -8010,7 +8017,7 @@ readers do not read off random characters that represent icons */
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .md\:grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }

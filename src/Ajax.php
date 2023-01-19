@@ -12,7 +12,8 @@ class Ajax {
 			'get_avatars',
 			'clear_avatars',
 			'background_categories',
-			'frame_categories'
+			'frame_categories',
+			'skin_attributes'
 		];
 
 		foreach ( $ajax as $hook ) {
@@ -34,6 +35,11 @@ class Ajax {
 		}
 		$product_categories = array_values( get_terms( $args ) );
 		wp_send_json( $product_categories );
+	}
+
+	public function get_woo_product_categories_children( $term_id ) {
+		$categories = array_values( get_term_children( $term_id, 'product_cat' ) );
+		$this->get_woo_product_categories( $categories );
 	}
 
 	public function get_woo_products_by_category() {
@@ -63,11 +69,24 @@ class Ajax {
 
 	public function background_categories() {
 		$options = get_option( 'shopeo_custom_card_options' );
-		$this->get_woo_product_categories( $options['background_category_id'] );
+		$this->get_woo_product_categories_children( $options['background_category_id'] );
 	}
 
 	public function frame_categories() {
 		$options = get_option( 'shopeo_custom_card_options' );
-		$this->get_woo_product_categories( $options['frame_category_id'] );
+		$this->get_woo_product_categories_children( $options['frame_category_id'] );
+	}
+
+	public function skin_attributes() {
+		$options = get_option( 'shopeo_custom_card_options' );
+		$args    = array(
+			'taxonomy'   => $options['skin_color_taxonomy'],
+			'orderby'    => 'name',
+			'order'      => 'asc',
+			'count'      => true,
+			'pad_counts' => true,
+		);
+		$skins   = array_values( get_terms( $args ) );
+		wp_send_json( $skins );
 	}
 }

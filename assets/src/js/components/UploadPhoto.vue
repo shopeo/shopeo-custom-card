@@ -11,13 +11,14 @@
     <div class="p-4 pt-0">
       <div class="flex justify-between"><h5>Images Records (Click To Use)</h5><a class="px-2" href="javascript:;"
                                                                                  @click="clear">Clear All</a></div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div v-if="!loading">
-
+      <div v-if="!loading" class="grid grid-cols-4 md:grid-cols-8 gap-4 mt-2">
+        <div v-for="(avatar,index) in avatars">
+          <img @click="selectImage(avatar)" :src="avatar">
         </div>
-        <div v-if="loading">
-          <img src="assets/images/loading.gif">
-        </div>
+      </div>
+      <div v-if="loading">
+        <img class="my-auto mt-2" style="height: 80px;"
+             src="/wp-content/plugins/shopeo-custom-card/assets/images/loading.gif">
       </div>
     </div>
   </div>
@@ -29,14 +30,18 @@ import {mapGetters} from 'vuex';
 export default {
   data() {
     return {
-      loading: true
+      loading: false
     };
   },
   computed: {
     ...mapGetters(['current', 'avatars'])
   },
   created() {
-    this.$store.dispatch('avatars');
+    this.loading = true;
+    let that = this;
+    this.$store.dispatch('avatars').finally(function () {
+      that.loading = false;
+    });
   },
   methods: {
     close(e) {
@@ -47,13 +52,29 @@ export default {
     },
     upload(e) {
       if (e.target.files && e.target.files[0]) {
+        this.loading = true;
+        let that = this;
         let file = e.target.files[0];
         this.$store.dispatch('file', file);
-        this.$store.dispatch('uploadAvatar', file);
+        this.$store.dispatch('uploadAvatar', file).finally(function () {
+          that.$store.dispatch('avatars').finally(function () {
+            that.loading = false;
+          });
+        });
       }
     },
+    selectImage(select_avatar) {
+      this.$store.dispatch('select_avatar', select_avatar);
+      this.$store.dispatch('step', 'select-frame');
+    },
     clear(e) {
-      this.$store.dispatch('clear');
+      this.loading = true;
+      let that = this;
+      this.$store.dispatch('clear').finally(function () {
+        that.$store.dispatch('avatars').finally(function () {
+          that.loading = false;
+        });
+      });
     }
   }
 }

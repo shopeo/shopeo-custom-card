@@ -33,6 +33,11 @@ class Admin {
 			'frame_category_id_callback'
 		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
 
+		add_settings_field( 'shopeo_custom_card_skin_color_taxonomy', __( 'Skin Color Taxonomy', 'shopeo-custom-card' ), array(
+			$this,
+			'skin_color_taxonomy_callback'
+		), 'shopeo-custom-card', 'shopeo_custom_card_section' );
+
 		add_settings_field( 'shopeo_custom_card_background_category_id', __( 'Background Category ID', 'shopeo-custom-card' ), array(
 			$this,
 			'background_category_id_callback'
@@ -69,6 +74,14 @@ class Admin {
 		?>
         <input type="number" name="shopeo_custom_card_options[frame_category_id]"
                value="<?php echo isset( $options['frame_category_id'] ) ? esc_attr( $options['frame_category_id'] ) : ''; ?>">
+		<?php
+	}
+
+	public function skin_color_taxonomy_callback() {
+		$options = get_option( 'shopeo_custom_card_options' );
+		?>
+        <input type="text" name="shopeo_custom_card_options[skin_color_taxonomy]"
+               value="<?php echo isset( $options['skin_color_taxonomy'] ) ? esc_attr( $options['skin_color_taxonomy'] ) : ''; ?>">
 		<?php
 	}
 
