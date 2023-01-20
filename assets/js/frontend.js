@@ -18163,13 +18163,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['frame_categories', 'product_count', 'skins', 'frames'])),
   created: function created() {
-    this.loading = true;
-    var that = this;
-    this.$store.dispatch('frame_categories', 'frame_categories');
-    this.$store.dispatch('skins', 'skins');
-    this.$store.dispatch('frames', 'frames')["finally"](function () {
-      that.loading = false;
-    });
+    this.$store.dispatch('frame_categories');
+    this.$store.dispatch('skins');
+    this.loadFrames();
   },
   methods: {
     back: function back(e) {
@@ -18177,9 +18173,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     changeCategory: function changeCategory(category) {
       this.select_category = category;
+      this.loadFrames();
     },
     changeSkin: function changeSkin(skin) {
       this.select_skin = skin;
+      this.loadFrames();
+    },
+    loadFrames: function loadFrames() {
+      var that = this;
+      this.loading = true;
+      this.$store.dispatch('frames', this.select_category, this.select_skin)["finally"](function () {
+        that.loading = false;
+      });
+    },
+    selectFrame: function selectFrame(frame) {
+      this.$store.dispatch('select_frame', frame);
+      this.$store.dispatch('step', 'select-background');
     }
   }
 });
@@ -18441,10 +18450,21 @@ var _hoisted_10 = {
   "class": "categories-ul"
 };
 var _hoisted_11 = ["onClick"];
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_12 = {
+  key: 0,
   "class": "flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 grid-box"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div")], -1 /* HOISTED */);
-
+};
+var _hoisted_13 = {
+  key: 1,
+  "class": "w-full flex justify-center items-center"
+};
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  style: {
+    "height": "80px"
+  },
+  src: "/wp-content/plugins/shopeo-custom-card/assets/images/loading.gif"
+}, null, -1 /* HOISTED */);
+var _hoisted_15 = [_hoisted_14];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -18475,7 +18495,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($data.select_category.slug === category.slug ? 'active' : '')
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.count), 1 /* TEXT */)], 10 /* CLASS, PROPS */, _hoisted_11);
-  }), 256 /* UNKEYED_FRAGMENT */))])]), _hoisted_12])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])]), !$data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
@@ -18520,10 +18540,10 @@ var _hoisted_9 = {
 };
 var _hoisted_10 = ["onClick", "src"];
 var _hoisted_11 = {
-  key: 1
+  key: 1,
+  "class": "w-full flex justify-center items-center"
 };
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  "class": "my-auto mt-2",
   style: {
     "height": "80px"
   },

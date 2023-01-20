@@ -7795,10 +7795,6 @@ readers do not read off random characters that represent icons */
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
 .mr-2 {
   margin-left: 0.5rem;
 }

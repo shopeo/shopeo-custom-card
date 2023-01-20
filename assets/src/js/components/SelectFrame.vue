@@ -22,8 +22,11 @@
             }}</span></li>
         </ul>
       </div>
-      <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 grid-box">
-        <div></div>
+      <div v-if="!loading" class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 grid-box">
+      </div>
+      <div v-if="loading" class="w-full flex justify-center items-center">
+        <img style="height: 80px;"
+             src="/wp-content/plugins/shopeo-custom-card/assets/images/loading.gif">
       </div>
     </div>
   </div>
@@ -44,13 +47,9 @@ export default {
     ...mapGetters(['frame_categories', 'product_count', 'skins', 'frames'])
   },
   created() {
-    this.loading = true;
-    let that = this;
-    this.$store.dispatch('frame_categories', 'frame_categories');
-    this.$store.dispatch('skins', 'skins');
-    this.$store.dispatch('frames', 'frames').finally(function () {
-      that.loading = false;
-    })
+    this.$store.dispatch('frame_categories');
+    this.$store.dispatch('skins');
+    this.loadFrames();
   },
   methods: {
     back(e) {
@@ -58,9 +57,22 @@ export default {
     },
     changeCategory(category) {
       this.select_category = category;
+      this.loadFrames();
     },
     changeSkin(skin) {
       this.select_skin = skin;
+      this.loadFrames();
+    },
+    loadFrames() {
+      let that = this;
+      this.loading = true;
+      this.$store.dispatch('frames', this.select_category, this.select_skin).finally(function () {
+        that.loading = false;
+      });
+    },
+    selectFrame(frame) {
+      this.$store.dispatch('select_frame', frame);
+      this.$store.dispatch('step', 'select-background');
     }
   }
 }

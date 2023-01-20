@@ -16,8 +16,8 @@
           <img @click="selectImage(avatar)" :src="avatar">
         </div>
       </div>
-      <div v-if="loading">
-        <img class="my-auto mt-2" style="height: 80px;"
+      <div v-if="loading" class="w-full flex justify-center items-center">
+        <img style="height: 80px;"
              src="/wp-content/plugins/shopeo-custom-card/assets/images/loading.gif">
       </div>
     </div>
