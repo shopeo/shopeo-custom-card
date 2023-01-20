@@ -61,7 +61,7 @@ const actions = {
                     action: 'skin_attributes'
                 },
                 success: function (data) {
-                    console.log(data);
+                    commit('skins', data);
                     resolve();
                 },
                 error: function (err) {
