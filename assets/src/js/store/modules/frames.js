@@ -47,9 +47,24 @@ const actions = {
     product_count({commit}, product_count) {
         commit('product_count', product_count);
     },
-    frames({commit}, category, skin) {
+    frames({commit}, params) {
         return new Promise((resolve, reject) => {
-            resolve();
+            jQuery.ajax({
+                url: shopeo_custom_card_frontend.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'get_products_by_frames',
+                    category: params.category,
+                    skin: params.skin
+                },
+                success: function (data) {
+                    console.log(data);
+                    resolve();
+                },
+                error: function (err) {
+                    reject(err);
+                }
+            });
         });
     },
     skins({commit}) {

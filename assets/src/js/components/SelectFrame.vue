@@ -13,7 +13,8 @@
     <div class="flex flex-box">
       <div class="flex-none border-y-0 border-l-0 border-r border-solid border-gray-200">
         <ul class="categories-ul">
-          <li @click="changeCategory({slug:'all'})" :class="select_category.slug==='all'?'active':''">All<span>{{
+          <li @click="changeCategory({slug:'all',term_id: 0})" :class="select_category.slug==='all'?'active':''">
+            All<span>{{
               product_count
             }}</span></li>
           <li v-for="category in frame_categories" @click="changeCategory(category)"
@@ -39,8 +40,8 @@ export default {
   data() {
     return {
       loading: false,
-      select_skin: {slug: 'white'},
-      select_category: {slug: 'all'}
+      select_skin: {slug: 'white', term_id: 0},
+      select_category: {slug: 'all', term_id: 0}
     };
   },
   computed: {
@@ -55,18 +56,27 @@ export default {
     back(e) {
       this.$store.dispatch('step', 'upload-photo');
     },
-    changeCategory(category) {
-      this.select_category = category;
+    changeCategory(e) {
+      this.select_category = {
+        term_id: e.term_id,
+        slug: e.slug
+      };
       this.loadFrames();
     },
-    changeSkin(skin) {
-      this.select_skin = skin;
+    changeSkin(e) {
+      this.select_skin = {
+        term_id: e.term_id,
+        slug: e.slug
+      };
       this.loadFrames();
     },
     loadFrames() {
       let that = this;
       this.loading = true;
-      this.$store.dispatch('frames', this.select_category, this.select_skin).finally(function () {
+      this.$store.dispatch('frames', {
+        category: this.select_category.term_id,
+        skin: this.select_skin.term_id
+      }).finally(function () {
         that.loading = false;
       });
     },

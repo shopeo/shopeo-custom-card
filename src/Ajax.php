@@ -7,6 +7,8 @@ class Ajax {
 	public function __construct() {
 		$ajax = [
 			'get_woo_products_by_category',
+			'get_products_by_frames',
+			'get_products_by_backgrounds',
 			'get_woo_product_by_id',
 			'upload_avatar',
 			'get_avatars',
@@ -43,13 +45,13 @@ class Ajax {
 	}
 
 	public function get_woo_products_by_category() {
-		$categories = $_POST['categories'];
-		$args       = array(
+		$category = $_POST['category'];
+		$args     = array(
 			'numberposts' => - 1,
-			'category'    => $categories ?: 0,
+			'category'    => $category ?: 0,
 			'post_type'   => 'product'
 		);
-		$posts      = get_posts( $args );
+		$posts    = get_posts( $args );
 		wp_send_json( $posts );
 	}
 
@@ -93,5 +95,14 @@ class Ajax {
 			$skins[]     = $term;
 		}
 		wp_send_json( $skins );
+	}
+
+	public function get_products_by_frames() {
+
+		wp_send_json( [] );
+	}
+
+	public function get_products_by_backgrounds() {
+		wp_send_json( [] );
 	}
 }

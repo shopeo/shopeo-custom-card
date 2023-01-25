@@ -17934,10 +17934,25 @@ var actions = {
     var commit = _ref2.commit;
     commit('product_count', _product_count);
   },
-  frames: function frames(_ref3, category, skin) {
+  frames: function frames(_ref3, params) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      resolve();
+      jQuery.ajax({
+        url: shopeo_custom_card_frontend.ajax_url,
+        type: 'POST',
+        data: {
+          action: 'get_products_by_frames',
+          category: params.category,
+          skin: params.skin
+        },
+        success: function success(data) {
+          console.log(data);
+          resolve();
+        },
+        error: function error(err) {
+          reject(err);
+        }
+      });
     });
   },
   skins: function skins(_ref4) {
@@ -18154,10 +18169,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       loading: false,
       select_skin: {
-        slug: 'white'
+        slug: 'white',
+        term_id: 0
       },
       select_category: {
-        slug: 'all'
+        slug: 'all',
+        term_id: 0
       }
     };
   },
@@ -18171,18 +18188,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     back: function back(e) {
       this.$store.dispatch('step', 'upload-photo');
     },
-    changeCategory: function changeCategory(category) {
-      this.select_category = category;
+    changeCategory: function changeCategory(e) {
+      this.select_category = {
+        term_id: e.term_id,
+        slug: e.slug
+      };
       this.loadFrames();
     },
-    changeSkin: function changeSkin(skin) {
-      this.select_skin = skin;
+    changeSkin: function changeSkin(e) {
+      this.select_skin = {
+        term_id: e.term_id,
+        slug: e.slug
+      };
       this.loadFrames();
     },
     loadFrames: function loadFrames() {
       var that = this;
       this.loading = true;
-      this.$store.dispatch('frames', this.select_category, this.select_skin)["finally"](function () {
+      this.$store.dispatch('frames', {
+        category: this.select_category.term_id,
+        skin: this.select_skin.term_id
+      })["finally"](function () {
         that.loading = false;
       });
     },
@@ -18484,11 +18510,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256 /* UNKEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.changeCategory({
-        slug: 'all'
+        slug: 'all',
+        term_id: 0
       });
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($data.select_category.slug === 'all' ? 'active' : '')
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("All"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.product_count), 1 /* TEXT */)], 2 /* CLASS */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.frame_categories, function (category) {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.product_count), 1 /* TEXT */)], 2 /* CLASS */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.frame_categories, function (category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       onClick: function onClick($event) {
         return $options.changeCategory(category);
