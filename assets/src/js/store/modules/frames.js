@@ -63,7 +63,6 @@ const actions = {
                     skin: params.skin
                 },
                 success: function (data) {
-                    console.log(data);
                     commit('frames', data);
                     resolve();
                 },

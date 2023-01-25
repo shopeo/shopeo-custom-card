@@ -17923,7 +17923,6 @@ var actions = {
           category: params.category
         },
         success: function success(data) {
-          console.log(data);
           commit('backgrounds', data);
           resolve();
         },
@@ -18041,7 +18040,6 @@ var actions = {
           skin: params.skin
         },
         success: function success(data) {
-          console.log(data);
           commit('frames', data);
           resolve();
         },

@@ -58,7 +58,6 @@ const actions = {
                     category: params.category,
                 },
                 success: function (data) {
-                    console.log(data);
                     commit('backgrounds', data);
                     resolve();
                 },
