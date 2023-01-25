@@ -3,7 +3,12 @@ const state = {
     product_count: 0,
     frames: [],
     skins: [],
-    select_frame: ''
+    select_frame: {
+        id: 0,
+        name: '',
+        price: 0,
+        image: ''
+    }
 };
 const getters = {
     frame_categories(state) {
@@ -59,6 +64,7 @@ const actions = {
                 },
                 success: function (data) {
                     console.log(data);
+                    commit('frames', data);
                     resolve();
                 },
                 error: function (err) {

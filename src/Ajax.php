@@ -107,10 +107,12 @@ class Ajax {
 			'post_type'   => 'product',
 			'post_status' => 'publish',
 			'tax_query'   => array(
-				'taxonomy' => 'product_cat',
-				'terms'    => [ $category ],
-				'field'    => 'term_id',
-				'operator' => 'IN'
+				array(
+					'taxonomy' => 'product_cat',
+					'terms'    => [ $category ],
+					'field'    => 'term_id',
+					'operator' => 'IN'
+				)
 			)
 		);
 		if ( $skin > 0 ) {
@@ -153,6 +155,27 @@ class Ajax {
 	public function get_products_by_backgrounds() {
 		$options  = get_option( 'shopeo_custom_card_options' );
 		$category = $_POST['category'] > 0 ? $_POST['category'] : $options['background_category_id'];
-		wp_send_json( [] );
+		$args     = array(
+			'numberposts' => - 1,
+			'post_type'   => 'product',
+			'post_status' => 'publish',
+			'tax_query'   => array(
+				array(
+					'taxonomy' => 'product_cat',
+					'terms'    => [ $category ],
+					'field'    => 'term_id',
+					'operator' => 'IN'
+				)
+			)
+		);
+		$posts    = get_posts( $args );
+		$products = [];
+		foreach ( $posts as $post ) {
+			$product      = wc_get_product( $post->ID );
+			$pro          = $product->get_data();
+			$pro['image'] = wp_get_original_image_url( $product->get_image_id( '' ) );
+			$products[]   = $pro;
+		}
+		wp_send_json( $products );
 	}
 }

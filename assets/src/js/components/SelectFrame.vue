@@ -23,7 +23,8 @@
             }}</span></li>
         </ul>
       </div>
-      <div v-if="!loading" class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 grid-box">
+      <div v-if="!loading" class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4 p-4 grid-box">
+        <img v-for="(frame,index) in frames" @click="selectFrame(frame)" :src="frame.image">
       </div>
       <div v-if="loading" class="w-full flex justify-center items-center">
         <img style="height: 80px;"
@@ -80,9 +81,15 @@ export default {
         that.loading = false;
       });
     },
-    selectFrame(frame) {
-      this.$store.dispatch('select_frame', frame);
-      this.$store.dispatch('step', 'select-background');
+    selectFrame(e) {
+      console.log(e);
+      this.$store.dispatch('select_frame', {
+        id: e.id,
+        name: e.name,
+        price: e.price,
+        image: e.image
+      });
+      this.$store.dispatch('step', 'custom-photo');
     }
   }
 }

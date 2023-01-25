@@ -12,9 +12,7 @@
       <div class="flex justify-between"><h5>Images Records (Click To Use)</h5><a class="px-2" href="javascript:;"
                                                                                  @click="clear">Clear All</a></div>
       <div v-if="!loading" class="grid grid-cols-4 md:grid-cols-8 gap-4 mt-2">
-        <div v-for="(avatar,index) in avatars">
-          <img @click="selectImage(avatar)" :src="avatar">
-        </div>
+        <img v-for="(avatar,index) in avatars" @click="selectImage(avatar)" :src="avatar">
       </div>
       <div v-if="loading" class="w-full flex justify-center items-center">
         <img style="height: 80px;"
