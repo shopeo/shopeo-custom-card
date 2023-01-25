@@ -98,10 +98,11 @@ class Ajax {
 	}
 
 	public function get_products_by_frames() {
-		$options  = get_option( 'shopeo_custom_card_options' );
-		$category = $_POST['category'] > 0 ? $_POST['category'] : $options['frame_category_id'];
-		$skin     = max( $_POST['skin'], 0 );
-		$args     = array(
+		$options   = get_option( 'shopeo_custom_card_options' );
+		$category  = $_POST['category'] > 0 ? $_POST['category'] : $options['frame_category_id'];
+		$skin      = max( $_POST['skin'], 0 );
+		$skin_name = '';
+		$args      = array(
 			'numberposts' => - 1,
 			'post_type'   => 'product',
 			'post_status' => 'publish',
@@ -119,10 +120,34 @@ class Ajax {
 				'field'    => 'term_id',
 				'operator' => 'IN'
 			);
+			$skin_term           = get_term( $skin );
+			$skin_attribute      = str_replace( 'pa_', '', $options['skin_color_taxonomy'] );
+			$skin_name           = $skin_term->name;
 		}
-		error_log( print_r( $args, true ) );
-		$posts = get_posts( $args );
-		wp_send_json( $posts );
+		$posts    = get_posts( $args );
+		$products = [];
+		foreach ( $posts as $post ) {
+			$product = wc_get_product( $post->ID );
+			if ( $product && $product->is_type( 'variable' ) ) {
+				$product    = new \WC_Product_Variable( $product->get_id() );
+				$variations = $product->get_available_variations( '' );
+				foreach ( $variations as $variation ) {
+					if ( $skin > 0 ) {
+						$attribute = $variation->get_attribute( $skin_attribute );
+						if ( $attribute === $skin_name ) {
+							$pro          = $variation->get_data();
+							$pro['image'] = wp_get_original_image_url( $variation->get_image_id( '' ) );
+							$products[]   = $pro;
+						}
+					} else {
+						$pro          = $variation->get_data();
+						$pro['image'] = wp_get_original_image_url( $variation->get_image_id( '' ) );
+						$products[]   = $pro;
+					}
+				}
+			}
+		}
+		wp_send_json( $products );
 	}
 
 	public function get_products_by_backgrounds() {
