@@ -18169,7 +18169,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       loading: false,
       select_skin: {
-        slug: 'white',
+        slug: 'all',
         term_id: 0
       },
       select_category: {

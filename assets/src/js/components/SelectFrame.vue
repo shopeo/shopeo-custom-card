@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       loading: false,
-      select_skin: {slug: 'white', term_id: 0},
+      select_skin: {slug: 'all', term_id: 0},
       select_category: {slug: 'all', term_id: 0}
     };
   },

@@ -98,11 +98,36 @@ class Ajax {
 	}
 
 	public function get_products_by_frames() {
-
-		wp_send_json( [] );
+		$options  = get_option( 'shopeo_custom_card_options' );
+		$category = $_POST['category'] > 0 ? $_POST['category'] : $options['frame_category_id'];
+		$skin     = max( $_POST['skin'], 0 );
+		$args     = array(
+			'numberposts' => - 1,
+			'post_type'   => 'product',
+			'post_status' => 'publish',
+			'tax_query'   => array(
+				'taxonomy' => 'product_cat',
+				'terms'    => [ $category ],
+				'field'    => 'term_id',
+				'operator' => 'IN'
+			)
+		);
+		if ( $skin > 0 ) {
+			$args['tax_query'][] = array(
+				'taxonomy' => $options['skin_color_taxonomy'],
+				'terms'    => [ $skin ],
+				'field'    => 'term_id',
+				'operator' => 'IN'
+			);
+		}
+		error_log( print_r( $args, true ) );
+		$posts = get_posts( $args );
+		wp_send_json( $posts );
 	}
 
 	public function get_products_by_backgrounds() {
+		$options  = get_option( 'shopeo_custom_card_options' );
+		$category = $_POST['category'] > 0 ? $_POST['category'] : $options['background_category_id'];
 		wp_send_json( [] );
 	}
 }
