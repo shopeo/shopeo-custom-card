@@ -33,7 +33,7 @@ export default {
     ...mapGetters(['step'])
   },
   created() {
-
+    this.$store.dispatch('currency_symbol');
   },
   methods: {}
 }

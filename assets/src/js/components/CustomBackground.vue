@@ -4,6 +4,12 @@
       <div class="title-btn absolute"><i @click="back()" class="fas fa-arrow-left"></i></div>
       <div class="title-name">Background Choose</div>
     </div>
+    <div>
+
+    </div>
+    <div>
+
+    </div>
   </div>
 </template>
 
@@ -14,7 +20,7 @@ export default {
   },
   methods: {
     back(e) {
-
+      this.$store.dispatch('step', 'select-background');
     }
   }
 }

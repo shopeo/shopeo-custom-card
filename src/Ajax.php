@@ -6,6 +6,7 @@ class Ajax {
 
 	public function __construct() {
 		$ajax = [
+			'get_woocommerce_config',
 			'get_woo_products_by_category',
 			'get_products_by_frames',
 			'get_products_by_backgrounds',
@@ -22,6 +23,12 @@ class Ajax {
 			add_action( 'wp_ajax_' . $hook, array( $this, $hook ) );
 			add_action( 'wp_ajax_nopriv_' . $hook, array( $this, $hook ) );
 		}
+	}
+
+	public function get_woocommerce_config() {
+		wp_send_json( [
+			'currency_symbol' => get_woocommerce_currency_symbol()
+		] );
 	}
 
 	public function get_woo_product_categories( $term_id = 0 ) {
