@@ -4,7 +4,7 @@
       <div class="title-btn absolute"><i @click="back()" class="fas fa-arrow-left"></i></div>
       <div class="title-name">
         {{ currency_symbol }} {{ select_frame.price }}
-        <p>{{ select_frame.name }}</p>
+        <small>{{ select_frame.name }}</small>
       </div>
     </div>
     <div>
