@@ -82,7 +82,6 @@ export default {
       });
     },
     selectFrame(e) {
-      console.log(e);
       this.$store.dispatch('select_frame', {
         id: e.id,
         name: e.name,

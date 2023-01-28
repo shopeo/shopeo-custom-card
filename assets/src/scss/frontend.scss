@@ -25,6 +25,10 @@ $fa-font-path: "../../fonts";
   .title-name {
     @apply text-center font-bold;
     @apply w-full;
+    .small-title {
+      @apply ml-2;
+      @apply text-xs font-normal text-gray-300;
+    }
   }
 
   .active {
