@@ -21960,13 +21960,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         top: 0,
         right: 0,
         bottom: 0
-      },
-      avatar: {
-        x: 80,
-        y: 80,
-        width: 80,
-        height: 80,
-        rotation: 0
       }
     };
   },
@@ -21985,25 +21978,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     onDrag: function onDrag(_ref) {
       var transform = _ref.transform;
+      console.log(transform);
       this.$refs.avatar_box.style.transform = transform;
     },
     onScale: function onScale(_ref2) {
       var drag = _ref2.drag;
+      console.log(drag.transform);
       this.$refs.avatar_box.style.transform = drag.transform;
     },
     onRotate: function onRotate(_ref3) {
       var drag = _ref3.drag;
+      console.log(drag.transform);
       this.$refs.avatar_box.style.transform = drag.transform;
     },
     onConfirm: function onConfirm(e) {
+      var transform = this.$refs.avatar_box.style.transform;
+      console.log(transform);
+      console.log(this.$refs.avatar_box.translate);
       var canvas = this.$refs.canvas;
       canvas.width = this.bounds.right;
       canvas.height = this.bounds.bottom;
       var ctx = canvas.getContext('2d');
+      var avatar = new Image();
+      avatar.onload(function (e) {
+        ctx.drawImage(this);
+        console.log(canvas.toDataURL('image/png'));
+      });
       var bg = new Image();
       bg.onload = function (e) {
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
         console.log(canvas.toDataURL('image/png'));
+        avatar.src = this.select_avatar;
       };
       bg.src = this.select_frame.image;
     }

@@ -53,13 +53,6 @@ export default {
         top: 0,
         right: 0,
         bottom: 0
-      },
-      avatar: {
-        x: 80,
-        y: 80,
-        width: 80,
-        height: 80,
-        rotation: 0
       }
     };
   },
@@ -78,23 +71,35 @@ export default {
       this.$store.dispatch('step', 'select-frame');
     },
     onDrag({transform}) {
+      console.log(transform);
       this.$refs.avatar_box.style.transform = transform;
     },
     onScale({drag}) {
+      console.log(drag.transform);
       this.$refs.avatar_box.style.transform = drag.transform;
     },
     onRotate({drag}) {
+      console.log(drag.transform);
       this.$refs.avatar_box.style.transform = drag.transform;
     },
     onConfirm(e) {
+      let transform = this.$refs.avatar_box.style.transform;
+      console.log(transform);
+      console.log(this.$refs.avatar_box.translate);
       let canvas = this.$refs.canvas;
       canvas.width = this.bounds.right;
       canvas.height = this.bounds.bottom;
       let ctx = canvas.getContext('2d');
+      let avatar = new Image();
+      avatar.onload(function (e) {
+        ctx.drawImage(this);
+        console.log(canvas.toDataURL('image/png'));
+      });
       let bg = new Image();
       bg.onload = function (e) {
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
         console.log(canvas.toDataURL('image/png'));
+        avatar.src = this.select_avatar;
       }
       bg.src = this.select_frame.image;
     }
