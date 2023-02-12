@@ -9,10 +9,13 @@
     </div>
     <div class="grow">
       <div class="h-full flex">
-        <div ref="box" class="relative w-auto h-5/6 md:w-1/2 md:h-auto m-auto"
+        <div ref="box" class="relative w-full h-full"
              style="background: url('/wp-content/plugins/shopeo-custom-card/assets/images/meshwork-bg.svg') left top repeat">
-          <img :src="select_frame.image" class="w-full">
-          <img class="avatar_box absolute top-2 left-2" ref="avatar_box" :src="select_avatar">
+          <img ref="body_image" :src="select_frame.image" class="absolute"
+               :style="{width:bodyParams.width+'px',top:bodyParams.top+'px',left:bodyParams.left+'px'}">
+          <img class="avatar_box absolute"
+               :style="{width:headParams.width+'px',top:headParams.top+'px',left:headParams.left+'px'}"
+               ref="avatar_box" :src="select_avatar">
           <Moveable
               className="moveable"
               v-bind:target="['.avatar_box']"
@@ -48,6 +51,22 @@ export default {
   },
   data() {
     return {
+      bodyParams: {
+        width: 240,
+        height: 0,
+        top: 70,
+        left: 60
+      },
+      headParams: {
+        width: 120,
+        height: 0,
+        top: 20,
+        left: 60
+      },
+      headTransform: {
+        scale: 1,
+        rotate: 0,
+      },
       bounds: {
         left: 0,
         top: 0,
@@ -83,6 +102,9 @@ export default {
       this.$refs.avatar_box.style.transform = drag.transform;
     },
     onConfirm(e) {
+      console.log(this.bodyParams);
+      console.log(this.headParams);
+      let that = this;
       let transform = this.$refs.avatar_box.style.transform;
       console.log(transform);
       console.log(this.$refs.avatar_box.translate);
@@ -91,15 +113,16 @@ export default {
       canvas.height = this.bounds.bottom;
       let ctx = canvas.getContext('2d');
       let avatar = new Image();
-      avatar.onload(function (e) {
+      avatar.onload = function (e) {
         ctx.drawImage(this);
         console.log(canvas.toDataURL('image/png'));
-      });
+      };
+
       let bg = new Image();
       bg.onload = function (e) {
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
         console.log(canvas.toDataURL('image/png'));
-        avatar.src = this.select_avatar;
+        avatar.src = that.select_avatar;
       }
       bg.src = this.select_frame.image;
     }

@@ -21955,6 +21955,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      bodyParams: {
+        width: 240,
+        height: 0,
+        top: 70,
+        left: 60
+      },
+      headParams: {
+        width: 120,
+        height: 0,
+        top: 20,
+        left: 60
+      },
+      headTransform: {
+        scale: 1,
+        rotate: 0
+      },
       bounds: {
         left: 0,
         top: 0,
@@ -21992,6 +22008,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$refs.avatar_box.style.transform = drag.transform;
     },
     onConfirm: function onConfirm(e) {
+      console.log(this.bodyParams);
+      console.log(this.headParams);
+      var that = this;
       var transform = this.$refs.avatar_box.style.transform;
       console.log(transform);
       console.log(this.$refs.avatar_box.translate);
@@ -22000,15 +22019,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       canvas.height = this.bounds.bottom;
       var ctx = canvas.getContext('2d');
       var avatar = new Image();
-      avatar.onload(function (e) {
+      avatar.onload = function (e) {
         ctx.drawImage(this);
         console.log(canvas.toDataURL('image/png'));
-      });
+      };
       var bg = new Image();
       bg.onload = function (e) {
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
         console.log(canvas.toDataURL('image/png'));
-        avatar.src = this.select_avatar;
+        avatar.src = that.select_avatar;
       };
       bg.src = this.select_frame.image;
     }
@@ -22348,7 +22367,7 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = {
   ref: "box",
-  "class": "relative w-auto h-5/6 md:w-1/2 md:h-auto m-auto",
+  "class": "relative w-full h-full",
   style: {
     "background": "url('/wp-content/plugins/shopeo-custom-card/assets/images/meshwork-bg.svg') left top repeat"
   }
@@ -22372,13 +22391,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     innerHTML: _ctx.currency_symbol
   }, null, 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.select_frame.price) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.select_frame.name), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    ref: "body_image",
     src: _ctx.select_frame.image,
-    "class": "w-full"
-  }, null, 8 /* PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    "class": "avatar_box absolute top-2 left-2",
+    "class": "absolute",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      width: $data.bodyParams.width + 'px',
+      top: $data.bodyParams.top + 'px',
+      left: $data.bodyParams.left + 'px'
+    })
+  }, null, 12 /* STYLE, PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    "class": "avatar_box absolute",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      width: $data.headParams.width + 'px',
+      top: $data.headParams.top + 'px',
+      left: $data.headParams.left + 'px'
+    }),
     ref: "avatar_box",
     src: _ctx.select_avatar
-  }, null, 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Moveable, {
+  }, null, 12 /* STYLE, PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Moveable, {
     className: "moveable",
     target: ['.avatar_box'],
     draggable: true,

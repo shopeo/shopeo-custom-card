@@ -7799,15 +7799,6 @@ readers do not read off random characters that represent icons */
 .relative {
   position: relative;
 }
-.top-2 {
-  top: 0.5rem;
-}
-.left-2 {
-  right: 0.5rem;
-}
-.m-auto {
-  margin: auto;
-}
 .mx-4 {
   margin-right: 1rem;
   margin-left: 1rem;
@@ -7842,9 +7833,6 @@ readers do not read off random characters that represent icons */
 }
 .w-full {
   width: 100%;
-}
-.w-auto {
-  width: auto;
 }
 .w-12 {
   width: 3rem;
@@ -7958,9 +7946,6 @@ readers do not read off random characters that represent icons */
 @media (min-width: 768px) {
   .md\:h-2\/3 {
     height: 66.666667%;
-  }
-  .md\:h-auto {
-    height: auto;
   }
   .md\:w-1\/2 {
     width: 50%;
